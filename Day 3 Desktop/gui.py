@@ -1,4 +1,4 @@
-import FreeSimpleGUI
+from zip_creator import make_archive
 
 import functions
 import FreeSimpleGUI as sg
@@ -6,7 +6,7 @@ import FreeSimpleGUI as sg
 # https://pypi.org/
 
 label = sg.Text("Type a TODO")
-input_box = FreeSimpleGUI.InputText(tooltip="Enter TODO", key="todo")
+input_box = sg.InputText(tooltip="Enter TODO", key="todo")
 add_button = sg.Button("Add")
 list_box = sg.Listbox(values=functions.get_todos(),
                       key="todos", enable_events=True,
