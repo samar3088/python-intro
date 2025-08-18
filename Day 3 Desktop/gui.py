@@ -3,6 +3,11 @@ from zip_creator import make_archive
 import functions
 import FreeSimpleGUI as sg
 import time
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 sg.theme("Black")
 # https://pypi.org/
@@ -11,6 +16,7 @@ clock = sg.Text("", key="clock")
 label = sg.Text("Type a TODO")
 input_box = sg.InputText(tooltip="Enter TODO", key="todo")
 add_button = sg.Button("Add")
+#add_button = sg.Button(size=2, image_source="add.png",tooltip="Add TODO", mouseover_colors="Red", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(),
                       key="todos", enable_events=True,
                       size=[45,10])
@@ -44,6 +50,8 @@ while True:
                 todos.append(new_todo + "\n")
                 functions.write_todos(todos)
                 window['todos'].update(values=todos)
+            else:
+                sg.popup("Please write something to add")
 
         case "Edit":
             if values['todos']:  # make sure something is selected
